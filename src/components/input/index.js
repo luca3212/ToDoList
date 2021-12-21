@@ -9,6 +9,7 @@ function input(props) {
         placeholder="Escriba una tarea..."
         value={value}
         onChange={onChange}
+        className="inputStyle"
         required
       />
     </>
