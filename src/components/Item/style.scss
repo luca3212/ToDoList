@@ -8,7 +8,7 @@
   flex-wrap: nowrap;
   box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%), 0 1px 3px 0 rgb(0 0 0 / 10%);
   position: relative;
-
+  overflow: hidden;
   background-image: radial-gradient(
     circle at 120.71% 50%,
     #f19583 0,
@@ -17,6 +17,8 @@
     #c95561 75%,
     #bd425b 100%
   );
+
+  animation: entrada 1s;
 
   input {
     margin: 15px;
@@ -48,9 +50,17 @@
     background: none;
     color: #f1f1f1;
   }
+}
 
-  &:hover {
-    transform: scale(1.05);
+@keyframes entrada {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -65,9 +75,15 @@
   );
 }
 
+.iconList {
+  position: absolute;
+  right: 10%;
+  transform: rotate(-25deg);
+}
+
 @media screen and (max-width: 425px) {
   .containerTask {
-    min-height: 60px;
+    min-height: 65px;
     margin: 5px 0 10px 0;
     input {
       margin: 10px;
@@ -78,7 +94,7 @@
       font-size: 1rem;
     }
     .btonClose {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     &:hover {
       transform: scale(1);

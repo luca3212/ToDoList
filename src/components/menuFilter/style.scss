@@ -1,0 +1,20 @@
+.listMenu {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.btonFiltre {
+  cursor: pointer;
+  padding: 4px;
+  font-weight: 700;
+  color: #666;
+}
+
+.btonActive {
+  color: #0051de;
+  border-bottom: 2px solid #0051de;
+}

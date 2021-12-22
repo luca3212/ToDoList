@@ -2,12 +2,15 @@ import { useState } from "react";
 import "./estilo.scss";
 import Input from "./components/input";
 import List from "./components/List";
-
+import ListMenu from "./components/menuFilter";
 import { TaskProvider } from "./contexts/Task";
 
 function App() {
   const [listTask, setListTask] = useState([]);
   const [inputTask, setInputTask] = useState("");
+  const [filtro, setFiltro] = useState(false);
+  const [arrayFiltro, setArrayFiltro] = useState([]);
+  const [menuFilter, setMenuFilter] = useState("0");
 
   function handleChange(e) {
     const { value } = e.target;
@@ -18,17 +21,10 @@ function App() {
     e.preventDefault();
     let id = new Date().getTime();
 
-    // let newDate = new Date();
-    // let dia = newDate.getDate();
-    // let mes = newDate.getMonth() + 1;
-    // let anio = newDate.getFullYear();
-    // const fecha = `${dia}/${mes}/${anio}`;
-
     const itemTask = {
       title: inputTask,
       done: false,
       id: id,
-      // fecha: fecha,
     };
 
     if (inputTask.trim() !== "") {
@@ -56,28 +52,10 @@ function App() {
     done: doneTask,
   };
 
-  const [filtro, setFiltro] = useState(false);
-  const [arrayFiltro, setArrayFiltro] = useState([]);
-
-  // function handleSelect(e) {
-  //   if (e.target.value !== "0") {
-  //     let arrayRtado = [];
-  //     if (e.target.value === "1") {
-  //       arrayRtado = listTask.filter((elemt) => elemt.done !== false);
-  //     } else {
-  //       arrayRtado = listTask.filter((elemt) => elemt.done !== true);
-  //     }
-  //     setArrayFiltro(arrayRtado);
-  //     setFiltro(true);
-  //   } else {
-  //     setFiltro(false);
-  //   }
-  // }
-
-  function handlebton(e) {
-    if (e.target.value !== "0") {
+  function handlebtonFiltro(opctionMenu) {
+    if (opctionMenu !== "0") {
       let arrayRtado = [];
-      if (e.target.value === "1") {
+      if (opctionMenu === "1") {
         arrayRtado = listTask.filter((elemt) => elemt.done !== false);
       } else {
         arrayRtado = listTask.filter((elemt) => elemt.done !== true);
@@ -87,13 +65,14 @@ function App() {
     } else {
       setFiltro(false);
     }
+    setMenuFilter(opctionMenu);
   }
 
   return (
     <TaskProvider value={contextFunction}>
       <div className="container">
         <header className="containerTitle">
-          <h1>ToDo List</h1>
+          <h1>To Do List</h1>
         </header>
 
         <main className="containerMain">
@@ -104,27 +83,10 @@ function App() {
             </form>
           </div>
 
-          {/* <div className="contentFiltro">
-            <p>Filtrar:</p>
-            <select onChange={handleSelect}>
-              <option value="0">Todas</option>
-              <option value="1">Finalizada</option>
-              <option value="2">Sin Finalizar</option>
-            </select>
-          </div> */}
-
-          <div className="contentFiltro">
-            <p>Filtrar:</p>
-            <button className="btonFiltre" value="0" onClick={handlebton}>
-              Todas
-            </button>
-            <button className="btonFiltre" value="1" onClick={handlebton}>
-              Finalizadas
-            </button>
-            <button className="btonFiltre" value="2" onClick={handlebton}>
-              Sin Finalizar
-            </button>
-          </div>
+          <ListMenu
+            activeMenu={menuFilter}
+            handlebtonFiltro={handlebtonFiltro}
+          />
 
           {!filtro ? (
             <List dataList={listTask} />
