@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./estilo.scss";
 import Input from "./components/input";
 import List from "./components/List";
@@ -6,11 +6,20 @@ import ListMenu from "./components/menuFilter";
 import { TaskProvider } from "./contexts/Task";
 
 function App() {
-  const [listTask, setListTask] = useState([]);
+  const [listTask, setListTask] = useState(() => {
+    const saved = localStorage.getItem("SaveTask");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+
   const [inputTask, setInputTask] = useState("");
   const [filtro, setFiltro] = useState(false);
   const [arrayFiltro, setArrayFiltro] = useState([]);
   const [menuFilter, setMenuFilter] = useState("0");
+
+  useEffect(() => {
+    localStorage.setItem("SaveTask", JSON.stringify(listTask));
+  }, [listTask]);
 
   function handleChange(e) {
     const { value } = e.target;
