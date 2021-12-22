@@ -18,17 +18,17 @@ function App() {
     e.preventDefault();
     let id = new Date().getTime();
 
-    let newDate = new Date();
-    let dia = newDate.getDate();
-    let mes = newDate.getMonth() + 1;
-    let anio = newDate.getFullYear();
-    const fecha = `${dia}/${mes}/${anio}`;
+    // let newDate = new Date();
+    // let dia = newDate.getDate();
+    // let mes = newDate.getMonth() + 1;
+    // let anio = newDate.getFullYear();
+    // const fecha = `${dia}/${mes}/${anio}`;
 
     const itemTask = {
       title: inputTask,
       done: false,
       id: id,
-      fecha: fecha,
+      // fecha: fecha,
     };
 
     if (inputTask.trim() !== "") {
@@ -42,7 +42,6 @@ function App() {
     setListTask(updateArray);
   }
   function doneTask(nroID) {
-    // alert("entro al doneTask");
     const newArray = listTask.slice().map((itemList) => {
       if (itemList.id === nroID) {
         itemList.done = !itemList.done;
@@ -60,8 +59,22 @@ function App() {
   const [filtro, setFiltro] = useState(false);
   const [arrayFiltro, setArrayFiltro] = useState([]);
 
-  function handleSelect(e) {
-    console.log("entro");
+  // function handleSelect(e) {
+  //   if (e.target.value !== "0") {
+  //     let arrayRtado = [];
+  //     if (e.target.value === "1") {
+  //       arrayRtado = listTask.filter((elemt) => elemt.done !== false);
+  //     } else {
+  //       arrayRtado = listTask.filter((elemt) => elemt.done !== true);
+  //     }
+  //     setArrayFiltro(arrayRtado);
+  //     setFiltro(true);
+  //   } else {
+  //     setFiltro(false);
+  //   }
+  // }
+
+  function handlebton(e) {
     if (e.target.value !== "0") {
       let arrayRtado = [];
       if (e.target.value === "1") {
@@ -69,13 +82,13 @@ function App() {
       } else {
         arrayRtado = listTask.filter((elemt) => elemt.done !== true);
       }
-      console.log(arrayFiltro);
       setArrayFiltro(arrayRtado);
       setFiltro(true);
     } else {
       setFiltro(false);
     }
   }
+
   return (
     <TaskProvider value={contextFunction}>
       <div className="container">
@@ -91,13 +104,26 @@ function App() {
             </form>
           </div>
 
-          <div className="contentFiltro">
+          {/* <div className="contentFiltro">
             <p>Filtrar:</p>
             <select onChange={handleSelect}>
               <option value="0">Todas</option>
               <option value="1">Finalizada</option>
               <option value="2">Sin Finalizar</option>
             </select>
+          </div> */}
+
+          <div className="contentFiltro">
+            <p>Filtrar:</p>
+            <button className="btonFiltre" value="0" onClick={handlebton}>
+              Todas
+            </button>
+            <button className="btonFiltre" value="1" onClick={handlebton}>
+              Finalizadas
+            </button>
+            <button className="btonFiltre" value="2" onClick={handlebton}>
+              Sin Finalizar
+            </button>
           </div>
 
           {!filtro ? (

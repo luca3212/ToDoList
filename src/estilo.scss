@@ -11,7 +11,8 @@
 
 body {
   width: 100%;
-  background: linear-gradient(to right, #aa4b6b, #6b6b83, #3b8d99);
+  // background: linear-gradient(to right, #aa4b6b, #6b6b83, #3b8d99);
+  background: #f9f9f9;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -22,8 +23,6 @@ body {
   padding: 20px;
   height: max-content;
   width: 100%;
-  //border-radius: 8px;
-  // background: rgb(243, 243, 243);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,16 +34,16 @@ body {
   margin-bottom: 20px;
   h1 {
     text-align: center;
-    color: #fff;
+    color: rgb(49, 49, 49);
     font-size: 2.5rem;
   }
 }
 
 .containerMain {
-  background: #ececec;
   width: 40%;
   min-width: 520px;
-  border-radius: 8px 8px 0 0;
+
+  padding: 0 0 5px 0;
   .contentForm {
     margin-bottom: 20px;
     width: 100%;
@@ -54,23 +53,24 @@ body {
     position: relative;
 
     form {
-      border-radius: 8px 8px 0 0;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 7px 16px 0 rgb(0 0 0 / 10%), 0 1px 3px 0 rgb(0 0 0 / 10%);
       button {
         font-size: 1rem;
         //color: #111111;
-        color: #3fcab7;
+        //color: #3fcab7;
+        color: #f1f1f1;
         position: absolute;
         right: 0;
-        padding: 8px 8px;
+        padding: 16px 8px;
+
         //background: #3fcab7;
-        font-weight: bold;
-        background: transparent;
+        // font-weight: bold;
+        background: #0051de;
         border: none;
-        border-radius: 0 8px 0 0;
       }
     }
   }
@@ -78,8 +78,57 @@ body {
   .contentFiltro {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+
     align-items: center;
-    gap: 15px;
+    justify-content: space-evenly;
+
+    padding-right: 5px;
+    margin-bottom: 20px;
+  }
+}
+
+.btonFiltre {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 10px;
+    margin-top: 0;
+  }
+  .containerTitle {
+    width: 100%;
+    margin-bottom: 20px;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  .containerMain {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .containerMain {
+    padding: 0;
+    .contentForm {
+      margin-bottom: 15px;
+      form {
+        button {
+          padding: 10px 8px;
+        }
+      }
+    }
+    .contentFiltro {
+      padding-right: 0;
+      margin-bottom: 15px;
+      justify-content: space-between;
+    }
+  }
+  * {
+    font-size: 14px;
   }
 }

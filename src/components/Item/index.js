@@ -3,25 +3,23 @@ import { useContext } from "react";
 import Task from "../../contexts/Task";
 
 function Item(props) {
-  const { title, done, id, fecha } = props.data;
+  const { title, done, id } = props.data;
   const TaskData = useContext(Task);
 
   return (
     <>
-      <li className="containerTask">
+      <li className={done ? `containerTask activo` : `containerTask`}>
         <input
           type="checkbox"
           onChange={() => TaskData.done(id)}
           checked={done}
-          className="Check"
         />
-        <p>
-          {title} {done}
-        </p>
-        <button onClick={() => TaskData.remove(id)}>Borrar</button>
-        <p>
-          <em>{fecha}</em>
-        </p>
+
+        <p className="titleTask">{title}</p>
+
+        <button className="btonClose" onClick={() => TaskData.remove(id)}>
+          &#10006;
+        </button>
       </li>
     </>
   );

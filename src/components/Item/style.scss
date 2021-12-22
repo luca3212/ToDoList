@@ -1,11 +1,87 @@
 .containerTask {
+  list-style: none;
+  color: #f1f1f1;
+  min-height: 70px;
+  margin: 5px 0 15px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%), 0 1px 3px 0 rgb(0 0 0 / 10%);
+  position: relative;
+
+  background-image: radial-gradient(
+    circle at 120.71% 50%,
+    #f19583 0,
+    #e68379 25%,
+    #d86c6c 50%,
+    #c95561 75%,
+    #bd425b 100%
+  );
+
+  input {
+    margin: 15px;
+    color-scheme: light;
+    accent-color: #e8e8e8;
+    transform: scale(1.5);
+  }
   input:checked + p {
     text-decoration: line-through;
   }
-  p {
+
+  .titleTask {
+    padding: 10px;
+    text-transform: capitalize;
     font-family: "Roboto", sans-serif;
-    font-size: 24px;
+    font-size: 1.1rem;
     text-align: left;
     flex-grow: 2;
+    white-space: initial;
+    overflow: hidden;
+  }
+
+  .btonClose {
+    font-size: 1.1rem;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    border: none;
+    background: none;
+    color: #f1f1f1;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.activo {
+  background-image: radial-gradient(
+    circle at 120.71% 50%,
+    #a3a7ff 0,
+    #7a8ffc 25%,
+    #3c78f2 50%,
+    #0063e8 75%,
+    #0051de 100%
+  );
+}
+
+@media screen and (max-width: 425px) {
+  .containerTask {
+    min-height: 60px;
+    margin: 5px 0 10px 0;
+    input {
+      margin: 10px;
+      transform: scale(1);
+    }
+    .titleTask {
+      padding: 5px;
+      font-size: 1rem;
+    }
+    .btonClose {
+      font-size: 1rem;
+    }
+    &:hover {
+      transform: scale(1);
+    }
   }
 }

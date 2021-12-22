@@ -5,7 +5,7 @@ function List(props) {
   const { dataList } = props;
 
   return (
-    <ul>
+    <ul className="containerUL">
       {dataList.map((info) => {
         return <Item data={info} key={info.id} />;
       })}
